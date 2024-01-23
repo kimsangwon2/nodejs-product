@@ -1,13 +1,13 @@
 import mongoose from "mongoose";
+import env from "dotenv";
+env.config();
+const { mongodburi, dbname } = process.env;
 
 const connect = () => {
   mongoose
-    .connect(
-      "mongodb+srv://sparta-user:aaaa4321@express-mongo.4pvl3ri.mongodb.net/?retryWrites=true&w=majority",
-      {
-        dbName: "products_memo",
-      },
-    )
+    .connect(mongodburi, {
+      dbname: dbname,
+    })
     .then(() => console.log("MongoDB 연결에 성공하였습니다."))
     .catch((err) => console.log(`MongoDB 연결에 실패하였습니다. ${err}`));
 };
