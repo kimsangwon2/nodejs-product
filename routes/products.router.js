@@ -32,7 +32,7 @@ router.get("/products", async (req, res, next) => {
 
 // 상품 상세 조회 API
 router.get("/products/:productId", async (req, res) => {
-  const products = await Products.find()
+  const products = await Products.findById(req.params.productId)
     .select("title content author status createdAt")
     .sort("-createdAt")
     .exec();
